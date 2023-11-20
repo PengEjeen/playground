@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이거 어케할까</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        nav a.active {
+            color: #007bff;
+        }
+
+        main {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        p.category,
+        p.media,
+        p.author,
+        p.publish-date {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        .latest-news {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .latest-news h2 {
+            font-size: 28px;
+            margin-top: 0;
+        }
+
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .news-title {
+            font-size: 20px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .news-category {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .news-source {
+            color: #777;
+        }
+
+        .news-summary {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .news-image {
+            max-width: 40%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .news-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>환영합니다</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#">물</a></li>
+            <li><a href="#">동해</a></li>
+            <li><a href="/test">test</a></li>
+            <li><a href="/upload">file</a></li>
+        </ul>
+    </nav>
+    
+    <main class="container">
+        <section>
+            <h2>별 헤는 밤</h2>
+            <p>계절이 지나가는 하늘에는
+                가을로 가득 차 있습니다.
+
+                나는 아무 걱정도 없이
+                가을 속의 별들을 다 헤일 듯합니다.
+
+                가슴속에 하나둘 새겨지는 별을
+                이제 다 못 헤는 것은
+                쉬이 아침이 오는 까닭이요,
+                내일 밤이 남은 까닭이요,
+                아직 나의 청춘이 다하지 않은 까닭입니다.
+
+                별 하나에 추억과
+                별 하나에 사랑과
+                별 하나에 쓸쓸함과
+                별 하나에 동경과
+                별 하나에 시와
+                별 하나에 어머니, 어머니,</p>
+        </section>
+        
+        <section class="latest-news">
+		<h2>최신 뉴스</h2>
+            {% for news in datas %}
+            <div class="news-item">
+                <h3 class="news-title">{{ news.title }}</h3>
+                <p class="news-category">카테고리: {{ news.category }}</p>
+                <p class="news-source">출처: {{ news.mediaName }}</p>
+                <img src="{{ news.img }}" class="news-image" alt="뉴스 이미지">
+                <p class="news-summary">{{ news.summarized }}</p>
+                <a href="{{ news.url }}" class="news-link" target="_blank">원문 보기</a>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- 다른 뉴스 아티클들을 위한 섹션 추가 -->
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 namyoung.cho</p>
+    </footer>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
