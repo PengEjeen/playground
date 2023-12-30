@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule List</title>
+</head>
+<body>
+
+<h1>Schedule List</h1>
+
+<a href="{% url 'create_schedule' %}">
+    <button>Create Schedule</button>
+</a>
+
+{% if schedules %}
+<form method="post" action="{% url 'delete_Schedule' %}">
+  {% csrf_token %}
+    <ul>
+        {% for schedule in schedules %}
+            <li>
+		<input type="checkbox" name="selected_schedules" value="{{ schedule.schedule_id }}">
+                <strong>{{ schedule.title }}</strong><br>
+                {{ schedule.description }}<br>
+                Uploaded at: {{ schedule.dateTimeOfUpload }}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+    <button type="submit">Delete</button>
+</form>
+{% else %}
+    <p>No schedules available.</p>
+{% endif %}
+
+<hr>
+
+</body>
+</html>

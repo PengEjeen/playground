@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import *
+from scheduleToday.views import *
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,7 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main, name="main"),#name요소는 추후 template 연동 시 필요
     path('test/', test, name="test"),
-    path('upload/', uploadFile, name="uploadFile")
+    path('upload/', uploadFile, name="uploadFile"),
+
+    #scheduleToday
+    path('scheduleBoard/', scheduleBoard, name="scheduleBoard"),
+    path('create_schedule/', create_schedule_view, name='create_schedule'),
+    path('delete_Schedule/', delete_Schedule, name='delete_Schedule')
 ]
 
 if settings.DEBUG:

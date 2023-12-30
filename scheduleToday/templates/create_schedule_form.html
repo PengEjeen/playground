@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Schedule</title>
+</head>
+<body>
+
+<h2>Create New Schedule</h2>
+<form method="post" action="{% url 'create_schedule' %}">
+    {% csrf_token %}
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description"></textarea><br>
+
+    <input type="submit" value="Create Schedule">
+</form>
+
+</body>
+</html>
