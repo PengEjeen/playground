@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommend Schedule</title>
+</head>
+<body>
+
+<h2>골라 골라</h2>
+<form method="post" action="{% url 'recommend_place' %}">
+    {% csrf_token %}
+    
+    <label for="adress">주소:</label><br>
+    <input type="text" id="adress" name="adress" required><br>
+
+    <label for="type">종류:</label><br>
+    <select id="type" name="type" required>
+        <option value="restaurant">식당</option>
+        <option value="cafe">카페</option>
+    </select><br>
+
+    <label for="radius">거리:</label><br>
+    <select id="radius" name="radius">
+        <option value="500">500m</option>
+        <option value="1000">1000m</option>
+        <option value="1500">1500m</option>
+        <option value="2000">2000m</option>
+    </select><br>
+
+    <input type="submit" value="Recommend place">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Detail</title>
+</head>
+<body>
+
+<h1>Schedule Detail</h1>
+
+<strong>{{ schedule.schedule_id }}</strong>
+<strong>{{ schedule.title }}</strong><br>
+{{ schedule.description }}<br>
+
+<a href="{% url 'create_cell' schedule_id=schedule.schedule_id %}">
+    <button>New</button>
+</a>
+
+
+<h2>Cells:</h2>
+{% if cells %}
+    <ul>
+        {% for cell in cells %}
+            <li>
+                <strong>Cell ID:</strong> {{ cell.cell_id }}<br>
+                <strong>Cell Mode:</strong> {{ cell.cell_mode }}<br>
+                <strong>Place IDs:</strong> {{ cell.place_id.place_id }}<br>
+                <!-- Add more details as needed -->
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No cells available.</p>
+{% endif %}
+
+</body>
+</html>

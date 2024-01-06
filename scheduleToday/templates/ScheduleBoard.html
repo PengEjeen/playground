@@ -12,21 +12,24 @@
 </a>
 
 {% if schedules %}
-<form method="post" action="{% url 'delete_Schedule' %}">
-  {% csrf_token %}
-    <ul>
-        {% for schedule in schedules %}
-            <li>
-		<input type="checkbox" name="selected_schedules" value="{{ schedule.schedule_id }}">
-                <strong>{{ schedule.title }}</strong><br>
-                {{ schedule.description }}<br>
-                Uploaded at: {{ schedule.dateTimeOfUpload }}
-            </li>
-            <br>
-        {% endfor %}
-    </ul>
-    <button type="submit">Delete</button>
-</form>
+    <form method="post" action="{% url 'delete_Schedule' %}">
+        {% csrf_token %}
+        <ul>
+            {% for schedule in schedules %}
+                <li>
+                    <input type="checkbox" name="schedule_ids" value="{{ schedule.schedule_id }}">
+                    <a href="{% url 'cell_detail' schedule_id=schedule.schedule_id %}">
+                        <strong>{{ schedule.schedule_id }}</strong>
+                        <strong>{{ schedule.title }}</strong><br>
+                        {{ schedule.description }}<br>
+                        Uploaded at: {{ schedule.dateTimeOfUpload }}
+                    </a>
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+        <button type="submit">Delete Selected Schedules</button>
+    </form>
 {% else %}
     <p>No schedules available.</p>
 {% endif %}

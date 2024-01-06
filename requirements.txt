@@ -1,2 +1,4 @@
 django
 pycryptodome
+googlemaps
+

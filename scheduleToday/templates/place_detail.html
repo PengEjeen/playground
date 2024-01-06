@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Details</title>
+</head>
+<body>
+
+{% for place in places %}
+    <h1>{{ place.displayName.text }} Detail</h1>
+
+    <p><strong>ID:</strong> {{ place.id }}</p>
+    <p><strong>Types:</strong> {{ place.types|join:", " }}</p>
+    <p><strong>National Phone Number:</strong> {{ place.nationalPhoneNumber }}</p>
+    <p><strong>International Phone Number:</strong> {{ place.internationalPhoneNumber }}</p>
+    <p><strong>Formatted Address:</strong> {{ place.formattedAddress }}</p>
+    <p><strong>Rating:</strong> {{ place.rating }}</p>
+    <p><strong>Google Maps URI:</strong> <a href="{{ place.googleMapsUri }}" target="_blank">Open in Google Maps</a></p>
+    <p><strong>Website URI:</strong> <a href="{{ place.websiteUri }}" target="_blank">{{ place.websiteUri }}</a></p>
+
+    <h2>Regular Opening Hours</h2>
+    <ul>
+        {% for period in place.regularOpeningHoursPeriods %}
+            <li>
+                <strong>Day:</strong> {{ period.day }} |
+                <strong>Open:</strong> {{ period.open.hour }}:{{ period.open.minute }} |
+                <strong>Close:</strong> {{ period.close.hour }}:{{ period.close.minute }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in place.reviews %}
+            <li>
+                <strong>Author:</strong> {{ review.authorAttribution.displayName }} |
+                <strong>Rating:</strong> {{ review.rating }} |
+                <strong>Text:</strong> {{ review.text.text }}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endfor %}
+
+</body>
+</html>
