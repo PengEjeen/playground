@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button-container">
+    <a href="{% url 'recommend_place' %}">
+        <button>추천</button>
+    </a>
+
+    <a href="{% url 'recommend_place' %}">
+        <button>Button 2</button>
+    </a>
+
+    <a href="{% url 'recommend_place' %}">
+        <button>Button 3</button>
+    </a>
+</div>
+
+</body>
+</html>

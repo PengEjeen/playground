@@ -42,6 +42,10 @@ def delete_Schedule(request):
             print(e)
             return redirect('scheduleBoard')
 
+#cell page part
+def select_button(request):
+    return render(request, 'select_button.html')
+
 def recommend_place(request):
     if request.method == 'POST':
         #get id
@@ -60,16 +64,15 @@ def recommend_place(request):
 
         #render select_page
         return render(request, 'place_detail.html', {'places': place_details})
-        #update db
 
     else:
         return render(request, 'recommend_schedule_form.html')
 
 
+#cell part
 def cell_detail(request, schedule_id):
     try:
-        schedule = Schedule_db.get_ScheduleWithID(schedule_id)
-        print(schedule)
+        schedule = Schedule_db.get_ScheduleWithID(schedule_id) 
         cell_ids = schedule.cell_ids['ids']
         cells = Cell_db.get_CellWithId(cell_ids)
         return render(request, 'cell_template.html', {'schedule': schedule, 'cells': cells})

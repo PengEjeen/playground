@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'home',
     'scheduleToday',
 ]
@@ -50,7 +51,14 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+#to allow ifram 
+CORS_ALLOWED_ORIGINS = [
+    "https://nycply.duckdns.org/select_button",
+    "https://nycply.duckdns.org/recommend_place",
 ]
 
 ROOT_URLCONF = 'playground.urls'

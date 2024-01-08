@@ -14,7 +14,7 @@ class Place:
 
         self.place_data = {
                 "includedTypes": [includedTypes],
-                "maxResultCount": 5,
+                "maxResultCount": 10,
                 "rankPreference": "POPULARITY",   #DISTNACE OR POPULARITY
                 "locationRestriction": {
                     "circle": {

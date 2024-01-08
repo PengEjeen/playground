@@ -33,7 +33,8 @@ urlpatterns = [
     path('create_schedule/', create_schedule_view, name='create_schedule'),
     path('delete_Schedule/', delete_Schedule, name='delete_Schedule'),
 
-    #recommend place
+    #recommend place (cell page)
+    path('select_button/', select_button, name='select_button'),
     path('recommend_place/', recommend_place, name='recommend_place'),
 
     #cell page
