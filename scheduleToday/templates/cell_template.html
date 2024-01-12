@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Schedule Detail</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
@@ -21,10 +22,12 @@
     <ul>
         {% for cell in cells %}
             <li>
-                    <iframe src="https://nycply.duckdns.org/{{ cell.cell_mode }}/{{ cell.cell_id }}?place_ids={{ cell.place_id.place_id|safe }}" width="600" height="400"></iframe>
-		    <a href="{% url 'delete_cell' schedule_id=schedule.schedule_id cell_id=cell.cell_id  %}">
-			    <button>Del</button>
-		    </a>
+		    <div class="cell-container">
+                    	<iframe class="cellFrame" src="https://nycply.duckdns.org/{{ cell.cell_mode }}/{{ cell.cell_id }}?place_ids={{ cell.place_id.place_id|safe }}" width="600" height="400"></iframe>
+		    	<a href="{% url 'delete_cell' schedule_id=schedule.schedule_id cell_id=cell.cell_id  %}" class="deleteButton" style="display: none;">
+			    	<button>Del</button>
+		    	</a>
+		    </div>
 		    <!-- Add more details as needed -->
             </li>
             <br>
@@ -33,6 +36,32 @@
 {% else %}
     <p>No cells available.</p>
 {% endif %}
+
+<script>
+    $(document).ready(function () {
+        // 변수를 통해 현재 표시 중인 "Del" 버튼을 추적
+        var currentDeleteButton = null;
+
+        $(".cell-container").on("mouseover", function (e) {
+            // 클릭된 요소가 iframe인 경우에만 처리
+            if ($(e.target).is(".cellFrame")) {
+                // 현재 클릭된 iframe을 선택
+                var currentIframe = $(e.target);
+
+                // 이전에 보이던 "Del" 버튼 숨김
+                if (currentDeleteButton) {
+                    currentDeleteButton.hide();
+                }
+
+                // 현재 iframe의 부모인 div에서 해당 iframe의 바로 옆에 있는 deleteButton을 표시
+                currentIframe.siblings(".deleteButton").show();
+
+                // 현재 표시 중인 "Del" 버튼을 변수에 저장
+                currentDeleteButton = currentIframe.siblings(".deleteButton");
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
