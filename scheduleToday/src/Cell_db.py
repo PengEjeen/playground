@@ -5,6 +5,7 @@ from scheduleToday.models import Cell
 
 CELL_ID_SIZE = 7
 
+#cell_ids is list
 def get_CellWithId(cell_ids):
     cells = Cell.objects.filter(cell_id__in=cell_ids)
     return cells
@@ -19,7 +20,7 @@ def create_NewCell():
         #Save in database
         cell = Cell(
             cell_id=cell_id,
-            cell_mode='button',
+            cell_mode='select_button',
             place_id={'place_id': []}
         )
         cell.full_clean()  # Validate model fields

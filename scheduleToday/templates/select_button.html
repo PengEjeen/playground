@@ -30,15 +30,15 @@
 <body>
 
 <div class="button-container">
-    <a href="{% url 'recommend_place' %}">
+    <a href="{% url 'recommend_place' cell_id=cell_id %}">
         <button>추천</button>
     </a>
 
-    <a href="{% url 'recommend_place' %}">
+    <a href="{% url 'recommend_place' cell_id=cell_id %}">
         <button>Button 2</button>
     </a>
 
-    <a href="{% url 'recommend_place' %}">
+    <a href="{% url 'recommend_place' cell_id=cell_id %}">
         <button>Button 3</button>
     </a>
 </div>

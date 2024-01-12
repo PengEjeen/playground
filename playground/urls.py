@@ -34,13 +34,16 @@ urlpatterns = [
     path('delete_Schedule/', delete_Schedule, name='delete_Schedule'),
 
     #recommend place (cell page)
-    path('select_button/', select_button, name='select_button'),
-    path('recommend_place/', recommend_place, name='recommend_place'),
+    path('select_button/<str:cell_id>/', select_button, name='select_button'),
+    path('recommend_place/<str:cell_id>/', recommend_place, name='recommend_place'),
+    path('place_detail/<str:cell_id>/', place_detail, name='place_detail'),
 
     #cell page
     path('schedule/<str:schedule_id>/', cell_detail, name='cell_detail'),
-    path('schedule/<str:schedule_id>/create_cell/', create_cell, name='create_cell')
-]
+    path('schedule/<str:schedule_id>/create_cell/', create_cell, name='create_cell'),
+    path('schedule/<str:schedule_id>/<str:cell_id>/delete_cell', delete_cell, name='delete_cell')
+
+    ]
 
 if settings.DEBUG:
     urlpatterns += static(

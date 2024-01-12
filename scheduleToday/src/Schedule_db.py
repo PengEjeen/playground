@@ -59,3 +59,20 @@ def get_ScheduleWithID(schedule_id):
         # 해당하는 schedule_id를 가진 Schedule이 없을 경우 처리
         return None
 
+def delete_cellId(schedule_id, cell_id):
+    try:
+        schedule = get_ScheduleWithID(schedule_id)
+        cell_ids = schedule.cell_ids['ids']
+
+        #find cell 
+        if cell_id in cell_ids:
+            cell_ids.remove(cell_id)
+
+        return True
+
+
+    except Exception as e:
+        print(e)
+        return False
+
+

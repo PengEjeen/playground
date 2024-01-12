@@ -21,8 +21,11 @@
     <ul>
         {% for cell in cells %}
             <li>
-		    <iframe src="https://nycply.duckdns.org/select_button" width="600" height="400"></iframe> 
-                <!-- Add more details as needed -->
+                    <iframe src="https://nycply.duckdns.org/{{ cell.cell_mode }}/{{ cell.cell_id }}?place_ids={{ cell.place_id.place_id|safe }}" width="600" height="400"></iframe>
+		    <a href="{% url 'delete_cell' schedule_id=schedule.schedule_id cell_id=cell.cell_id  %}">
+			    <button>Del</button>
+		    </a>
+		    <!-- Add more details as needed -->
             </li>
             <br>
         {% endfor %}
